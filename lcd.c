@@ -1,9 +1,9 @@
 #include <ctype.h>
 
-xdata unsigned char lcd_command   _at_ 0x4000;
-xdata unsigned char lcd_data      _at_ 0x4001;
-xdata unsigned char lcd_busy      _at_ 0x4002;
-xdata unsigned char lcd_data_read _at_ 0x4003;
+xdata volatile unsigned char lcd_command   _at_ 0x4000;
+xdata volatile unsigned char lcd_data      _at_ 0x4001;
+xdata volatile unsigned char lcd_busy      _at_ 0x4002;
+xdata volatile unsigned char lcd_data_read _at_ 0x4003;
 
 xdata char lcd_str[256];
 xdata char lcd_input_str[24];
@@ -93,6 +93,7 @@ void lcd_put_str(unsigned char row,column,unsigned char *string, bit charact)
 
 }
 /******************************************************************************/
+/*
 void lcd_read_str(char row)
 {
     char i;
@@ -118,7 +119,9 @@ void lcd_read_str(char row)
         lcd_input_str[i] = lcd_data_read;
     }
 }
+*/
 /******************************************************************************/
+/*
 void lcd_crsr_place(char row)
 {
     while(lcd_busy&(1<<(7)));
@@ -130,6 +133,7 @@ void lcd_crsr_place(char row)
          case 3: lcd_command = 0x80|0x54 + lcd_crsr_position; break;
     }
 }
+*/
 /******************************************************************************/
 bit lcd_init_crsr_position()
 {
